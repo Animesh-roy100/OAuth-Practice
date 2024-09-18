@@ -9,3 +9,7 @@ export async function signInWithGithub() {
 export async function signInWithKeycloak() {
   return auth.signIn("keycloak");
 }
+
+export async function signInWithGoogle() {
+  return auth.signIn("google");
+}

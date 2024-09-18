@@ -3,6 +3,7 @@ import NextAuth from "next-auth";
 import { db } from "./db";
 import GitHubProvider from "next-auth/providers/github";
 import KeycloakProvider from "next-auth/providers/keycloak";
+import GoogleProvider from "next-auth/providers/google";
 
 export const {
   handlers: { GET, POST },
@@ -21,6 +22,10 @@ export const {
       clientSecret: process.env.KEYCLOAK_CLIENT_SECRET,
       issuer: `${process.env.KEYCLOAK_URL}/realms/${process.env.KEYCLOAK_REALM}`,
     }),
+    GoogleProvider({ 
+      clientId: process.env.GOOGLE_CLIENT_ID, 
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET 
+    })
   ],
   callbacks: {
     async session({ session, user }: any) {

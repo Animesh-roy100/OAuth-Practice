@@ -7,6 +7,10 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
 } from "@nextui-org/react";
 import * as actions from "@/actions";
 import { useSession } from "next-auth/react";
@@ -35,22 +39,38 @@ export default function HeaderAuth() {
     );
   } else {
     return (
-      <>
+      <Dropdown>
         <NavbarItem>
-          <form action={actions.signInWithGithub}>
-            <Button type="submit" color="secondary" variant="bordered">
-              Sign In with GitHub
+          <DropdownTrigger>
+            <Button color="secondary" variant="bordered">
+              Sign In
             </Button>
-          </form>
+          </DropdownTrigger>
         </NavbarItem>
-        <NavbarItem>
-          <form action={actions.signInWithKeycloak}>
-            <Button type="submit" color="secondary" variant="bordered">
-              Sign In with Keycloak
-            </Button>
-          </form>
-        </NavbarItem>
-      </>
+        <DropdownMenu aria-label="Sign In Options">
+          <DropdownItem>
+            <form action={actions.signInWithGithub}>
+              <Button type="submit" color="secondary" variant="light" fullWidth>
+                Sign In with GitHub
+              </Button>
+            </form>
+          </DropdownItem>
+          <DropdownItem>
+            <form action={actions.signInWithKeycloak}>
+              <Button type="submit" color="secondary" variant="light" fullWidth>
+                Sign In with Keycloak
+              </Button>
+            </form>
+          </DropdownItem>
+          <DropdownItem>
+            <form action={actions.signInWithGoogle}>
+              <Button type="submit" color="secondary" variant="light" fullWidth>
+                Sign In with Google
+              </Button>
+            </form>
+          </DropdownItem>
+        </DropdownMenu>
+      </Dropdown>
     );
   }
 }
